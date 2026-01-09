@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Revision Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Welcome to Smart Revision Planner</h1>
+
+    <h2>Study Session Form</h2>
+    <form onsubmit="handleStudyInput(event)">
+        <input type="text" id="topic" placeholder="Topic Name" required /><br><br>
+        <input type="number" id="duration" placeholder="Duration (minutes)" required /><br><br>
+
+        <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select><br><br>
+
+        <button type="submit">Generate Timetable</button>
+    </form>
+
+    <h2>Optimized Timetable</h2>
+    <table border="1">
+        <tr>
+            <th>Time</th>
+            <th>Topic</th>
+            <th>Type</th>
+        </tr>
+        <tbody id="timetableBody">
+            <!-- JS will insert rows here -->
+        </tbody>
+    </table>
+
+    <h3>Memory Retention</h3>
+    <p id="retentionText">No data yet</p>
+
+    <br>
+    <a href="quiz.html">
+        <button>Take Revision Quiz</button>
+    </a>
+
+    <script>
+        function handleStudyInput(event) {
+            event.preventDefault();
+
+            const topic = document.getElementById("topic").value;
+            const difficulty = document.getElementById("difficulty").value;
+
+            localStorage.setItem("topic", topic);
+            localStorage.setItem("difficulty", difficulty);
+
+            renderTimetable();
+            alert("Study session recorded. Timetable optimized.");
+        }
+
+        function renderTimetable() {
+            const topic = localStorage.getItem("topic") || "Math";
+
+            const tableBody = document.getElementById("timetableBody");
+            tableBody.innerHTML = `
+                <tr>
+                    <td>9:00</td>
+                    <td>${topic}</td>
+                    <td>Revision</td>
+                </tr>
+                <tr>
+                    <td>11:00</td>
+                    <td>Physics</td>
+                    <td>New</td>
+                </tr>
+            `;
+
+            document.getElementById("retentionText").innerText =
+                topic + ": 72% (predicted)";
+        }
+
+        // Render once when page loads
+        renderTimetable();
+    </script>
+
+</body>
+</html>
