@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <h1>Revision Quiz</h1>
+
+    <p><strong>Topic:</strong> <span id="quizTopic"></span></p>
+
+<script>
+document.getElementById("quizTopic").innerText =
+    localStorage.getItem("topic") || "Math";
+</script>
+
+
+    <p><strong>Question:</strong> What is the forgetting curve?</p>
+
+    <input type="radio" name="q1"> A memory technique<br>
+    <input type="radio" name="q1"> A mathematical model of forgetting<br>
+    <input type="radio" name="q1"> A study timetable<br>
+    <input type="radio" name="q1"> A quiz platform<br><br>
+
+    <button onclick="submitQuiz()">Submit Quiz</button>
+
+<script>
+function submitQuiz() {
+    alert("Quiz submitted! Memory strength updated.");
+    window.location.href = "result.html";
+}
+</script>
+
+
+
+    <p><a href="index.html">⬅ Back to Timetable</a></p>
+</body>
+</html>

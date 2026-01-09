@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Result</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Quiz Result</h1>
+
+    <p><strong>Score:</strong> 3 / 5</p>
+
+    <p id="retention"></p>
+
+    <p><em>Memory strength updated based on quiz performance.</em></p>
+
+    <h3>Next Recommended Revision</h3>
+    <ul id="nextRevision"></ul>
+
+    <br>
+    <a href="index.html">
+        <button>Back to Timetable</button>
+    </a>
+
+    <script>
+        // Get topic from previous page
+        const topic = localStorage.getItem("topic") || "Math";
+
+        // Update retention text
+        document.getElementById("retention").innerText =
+            topic + ": 78% (Improved after quiz)";
+
+        // Update next revision dynamically
+        const list = document.getElementById("nextRevision");
+        list.innerHTML = `
+            <li>${topic} – in 2 days</li>
+        `;
+    </script>
+
+</body>
+</html>
